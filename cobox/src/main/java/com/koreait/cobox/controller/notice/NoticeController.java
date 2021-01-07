@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.cobox.exception.NoticeException;
+import com.koreait.cobox.model.domain.Division;
 import com.koreait.cobox.model.domain.Notice;
+import com.koreait.cobox.model.notice.service.DivisionService;
 import com.koreait.cobox.model.notice.service.NoticeService;
 
 @Controller
@@ -22,10 +24,24 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Autowired
+	private DivisionService divisionService;
+	
 	//공지 등록폼 가져오기 
 	@RequestMapping(value = "/admin/notice/registform")
 	public String getRegistForm() {
 		return "admin/notice/regist_form";
+	}
+	
+	//공지사항- 구분(division)값 가져오기 
+	@RequestMapping(value = "/admin/notice/registform", method = RequestMethod.GET)
+	public ModelAndView getDivisionList() {
+		List<Division> divisionList = divisionService.selectAll();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("divisionList", divisionList);
+		mav.setViewName("admin/notice/regist_form");
+		return mav;
 	}
 	
 	//공지사항 전체 가져오기 
@@ -48,8 +64,9 @@ public class NoticeController {
 	}
 	
 	//공지 등록하기 
-	@RequestMapping(value = "/admin/notice/regist", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/notice/regist", method = RequestMethod.POST)
 	public String regist(Notice notice) {
+		logger.debug(notice.getContents());
 		noticeService.insert(notice);
 		return "redirect:/admin/notice/list";
 	}
