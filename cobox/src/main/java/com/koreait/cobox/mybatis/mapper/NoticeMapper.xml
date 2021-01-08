@@ -25,14 +25,17 @@
 	</select>
 	
 	<insert id="insert" parameterType="Notice">
-		insert into notice(notice_id, division_id, title, writer, contents) values(seq_notice.nextval, #{division_id}, #{title}, #{writer}, #{contents})
+		insert into notice(notice_id, division_id, title, writer, contents) values(seq_notice.nextval, #{division.division_id}, #{title}, #{writer}, #{contents})
+		<selectKey order="AFTER" keyProperty="notice_id" resultType="int">
+			select seq_notice.currval as notice_id from dual
+		</selectKey>
 	</insert>
 	
 	<update id="update" parameterType="Notice">
-		update notice set division_id={division_id},title=#{title},writer=#{writer},contents=#{contents}
+		update notice set title=#{title},writer=#{writer},contents=#{contents} where notice_id=#{notice_id}
 	</update>
 	
-	<update id="plusHit" parameterType="int">
+	<update id="noticeHit" parameterType="int">
 		update notice set hit = hit+1 where notice_id=#{notice_id}
 	</update>
 	

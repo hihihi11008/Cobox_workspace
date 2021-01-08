@@ -54,11 +54,13 @@ public class NoticeController {
 		return mav;
 	}
 	
-	//공지 한건 가져오기 
+	//공지 한건 가져오기 + 조회수 증가 
 	@RequestMapping(value = "/admin/notice/detail", method = RequestMethod.GET)
 	public ModelAndView select(int notice_id) {
 		ModelAndView mav = new ModelAndView();
 		Notice notice = noticeService.select(notice_id);
+		logger.debug("디테일 "+notice.getNotice_id());
+		noticeService.noticeHit(notice_id);
 		mav.addObject("notice",notice);
 		return mav;
 	}
@@ -66,17 +68,21 @@ public class NoticeController {
 	//공지 등록하기 
 	@RequestMapping(value = "/admin/notice/regist", method = RequestMethod.POST)
 	public String regist(Notice notice) {
-		logger.debug(notice.getContents());
+		logger.debug("notice 내용은!!! "+notice.getContents());
+		logger.debug("notice 제목은!!!"+notice.getTitle());
+		logger.debug("notice 작성자는??"+notice.getWriter());
+		logger.debug("notice 작성자는??"+notice.getDivision().getDivision_id());
+		
 		noticeService.insert(notice);
 		return "redirect:/admin/notice/list";
 	}
 	
-	//공지 수정하기 
-	@RequestMapping(value = "/admin/notice/edit", method = RequestMethod.GET)
+	//공지 수정하기 POST
+	@RequestMapping(value = "/admin/notice/edit", method = RequestMethod.POST)
 	public String update(Notice notice) {
+		logger.debug(""+notice.getNotice_id());
 		noticeService.update(notice);
-		String viewPage="redirect:/admin/notice/detail?notice_id="+notice.getNotice_id();
-		return viewPage;
+		return "redirect:/admin/notice/detail?notice_id="+notice.getNotice_id();
 	}
 	
 	//공지 삭제하기 

@@ -1,8 +1,9 @@
+<%@page import="com.koreait.cobox.model.domain.Notice"%>
 <%@page import="com.koreait.cobox.model.domain.Division"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
- List<Division> divisionList = (List)request.getAttribute("divisionList");
+	Notice notice = (Notice)request.getAttribute("notice");
 %>
 <!DOCTYPE html>
 <html>
@@ -84,42 +85,56 @@ input[type=button]:hover {
   }
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-function regist(){
-	if (confirm("공지사항을 등록하시겠습니까?")) {
-		var form = document.querySelector("form");
-		form.action="/admin/notice/regist";
-		form.method="post";
-	}
-		form.submit();
-}
+$(function(){
+	$($("input[type='button']")[1]).click(function(){//목록
+		location.href="/admin/notice/list";
+	});
+	
+	$($("input[type='button']")[2]).click(function(){//수정
+		if (confirm("수정하시겠습니까?")) {
+			$("form").attr({
+				action:"/admin/notice/edit",
+				method:"post"
+			});
+			$("form").submit();
+		}
+	});
+	
+	$($("input[type='button']")[3]).click(function(){//삭제
+		if (confirm("삭제하시겠습니까?")) {
+			$("form").attr({
+				action:"/admin/notice/del",
+				method:"get"
+			});
+			$("form").submit();
+		}		
+	});
+});
 </script>
 </head>
 <body>
 
-<h2>공지사항 등록</h2>
+<h2>공지사항 상세보기</h2>
 
 <div class="container">
   <form>
-    <div class="row">
+  <input type="hidden" name="notice_id" value="<%=notice.getNotice_id()%>">
+<%--     <div class="row">
       <div class="col-25">
         <label  for="country">구분</label>
       </div>
       <div class="col-75">
-        <select id="country" name="division.division_id">
-        	<option>구분</option>
-        <%for(Division division : divisionList){ %>
-        	<option value="<%=division.getDivision_id()%>"><%=division.getDname() %></option>
-        <%} %>
-        </select>
+        <input name="division.division_id" value="<%= notice.getDivision().getDname() %>">
       </div>
-    </div>
+    </div> --%>
     <div class="row">
       <div class="col-25">
         <label for="lname">제목</label>
       </div>
       <div class="col-75">
-        <input type="text" id="lname" name="title" placeholder="제목..">
+        <input type="text" id="lname" name="title" value="<%=notice.getTitle()%>">
       </div>
     </div>
     <div class="row">
@@ -127,7 +142,7 @@ function regist(){
         <label for="fname">글쓴이</label>
       </div>
       <div class="col-75">
-        <input type="text" id="fname" name="writer" placeholder="글쓴이..">
+        <input type="text" id="fname" name="writer" value="<%=notice.getWriter()%>">
       </div>
     </div>
     <div class="row">
@@ -141,15 +156,15 @@ function regist(){
     </div>
     <div class="row">
       <div class="col">
-        <textarea id="subject" name="contents" placeholder="내용작성.." style="height:200px"></textarea>
+        <textarea id="subject" name="contents" style="height:200px"><%= notice.getContents() %></textarea>
       </div>
     </div>
     <div class="row">
-      <input type="button" value="등록" onclick="regist()">
-      <input type="button" value="목록보기" onclick="location.href='/admin/notice/list'">
+      <input type="button" value="목록보기" >
+      <input type="button" value="수정">
+      <input type="button" value="삭제">
     </div>
   </form>
 </div>
-
 </body>
 </html>

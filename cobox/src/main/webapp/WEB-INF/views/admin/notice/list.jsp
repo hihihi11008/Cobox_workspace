@@ -102,6 +102,7 @@ a:hover {
 			<th>No.</th>
 			<th>구분</th>
 			<th>제목</th>
+			<th>작성자</th>
 			<th>등록일</th>
 			<th>조회수</th>
 		</tr>
@@ -109,19 +110,20 @@ a:hover {
 			int curPos=pager.getCurPos();
 			int num = pager.getNum();
 		%>
-		<%for(int i=1; i<pager.getPageSize();i++){ %>
+		<%for(int i=1; i<=pager.getPageSize();i++){ %>
 		<%if(num<1)break; %>
 			<%Notice notice = noticeList.get(curPos++); %>
 			<tr>
 				<td><%=num-- %></td>
 				<td><%=notice.getDivision().getDname() %></td>
 				<td><a href="/admin/notice/detail?notice_id=<%=notice.getNotice_id() %>"><%=notice.getTitle() %></a></td>
+				<td><%=notice.getWriter()%></td>
 				<td><%=notice.getRegdate().substring(0, 10)%></td>
 				<td><%=notice.getHit() %></td>
 			</tr>
 		<%} %>
 		<tr>
-			<td colspan="5" style="text-align: center">
+			<td colspan="6" style="text-align: center">
 			<%for(int i=pager.getFirstPage();i<=pager.getLastPage();i++){ %>
 			<%if(i>pager.getTotalPage()) break; %>
 				<a <%if(pager.getCurrentPage()==i){ %>class="pageNum"<%} %> href="/admin/notice/list?currentPage=<%=i%>">[<%=i %>]</a>
@@ -129,7 +131,7 @@ a:hover {
 			</td>
 		</tr>
 		<tr>
-			<td colspan="5">
+			<td colspan="6">
 				<button onclick="location.href='registform'">글등록</button>
 			</td>
 		</tr>
