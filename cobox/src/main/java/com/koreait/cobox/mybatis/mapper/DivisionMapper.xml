@@ -8,4 +8,5 @@
 	 <select id="select" parameterType="int" resultType="Division">
 	 	select * from division where division_id = #{division_id}
 	 </select>
+	 
 </mapper>

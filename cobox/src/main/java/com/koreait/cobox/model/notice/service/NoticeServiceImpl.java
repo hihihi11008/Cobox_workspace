@@ -47,4 +47,9 @@ public class NoticeServiceImpl implements NoticeService{
 		noticeDAO.noticeHit(notice_id);
 	}
 
+	@Override
+	public List<Notice> selectAllById(int division_id) {
+		return noticeDAO.selectAllById(division_id);
+	}
+
 }

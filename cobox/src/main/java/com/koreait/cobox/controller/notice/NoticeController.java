@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.cobox.exception.NoticeException;
@@ -33,6 +35,7 @@ public class NoticeController {
 		return "admin/notice/regist_form";
 	}
 	
+	/*
 	//공지사항- 구분(division)값 가져오기 
 	@RequestMapping(value = "/admin/notice/registform", method = RequestMethod.GET)
 	public ModelAndView getDivisionList() {
@@ -43,6 +46,7 @@ public class NoticeController {
 		mav.setViewName("admin/notice/regist_form");
 		return mav;
 	}
+	*/
 	
 	//공지사항 전체 가져오기 
 	@RequestMapping(value = "/admin/notice/list", method = RequestMethod.GET)
@@ -54,13 +58,12 @@ public class NoticeController {
 		return mav;
 	}
 	
-	//공지 한건 가져오기 + 조회수 증가 
+	//공지 한건 가져오기 (관리자가 보는것이므로 조회수증가 xxx)
 	@RequestMapping(value = "/admin/notice/detail", method = RequestMethod.GET)
 	public ModelAndView select(int notice_id) {
 		ModelAndView mav = new ModelAndView();
 		Notice notice = noticeService.select(notice_id);
 		logger.debug("디테일 "+notice.getNotice_id());
-		noticeService.noticeHit(notice_id);
 		mav.addObject("notice",notice);
 		return mav;
 	}
@@ -97,6 +100,55 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg",e.getMessage());
 		//mav.setViewName("message/result"); //보여줄 페이지 
+		return mav;
+	}
+	
+	/********************************************************
+	 영화관 프론트 요청 처리 
+	********************************************************/
+	//공지 리스트 보기 
+	@RequestMapping(value = "/client/notice/list", method = RequestMethod.GET)
+	public ModelAndView getCinemaNotice() {
+		ModelAndView mav = new ModelAndView();
+		List<Notice> noticeList = noticeService.selectAll();
+		mav.addObject("noticeList",noticeList);
+		mav.setViewName("client/notice/list");
+		return mav;
+	}
+	
+	//비동기 구분리스트 가져오기 
+	@RequestMapping(value = "/client/notice/divisionlist", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Division> getDivisionListByAjax(){
+		List<Division>  divisionList = divisionService.selectAll();
+		return divisionList;
+	}
+	
+	
+	
+	 //구분id 에 따른 공지리스트 보기
+	 
+	 @RequestMapping(value = "/client/notice/listz", method = RequestMethod.GET)
+	 public ModelAndView getCinemaNoticeByDivision(int division_id) { 
+		 logger.debug("division_id 는????" + division_id);
+		 List<Notice> noticeList = noticeService.selectAllById(division_id); 
+		 
+		 ModelAndView mav = new ModelAndView(); 
+		 mav.addObject("noticeList", noticeList);
+		 //logger.debug("dname은??????" + noticeList.get(1).getDivision().getDname());
+		 mav.setViewName("client/notice/listz");
+		 return mav; 
+	 }
+
+
+	//공지 상세보기 요청 + 조회수 증가 
+	@RequestMapping(value = "/client/notice/detail", method = RequestMethod.GET)
+	public ModelAndView getCinemaNoticeDetail(int notice_id) {
+		ModelAndView mav = new ModelAndView();
+		Notice notice = noticeService.select(notice_id);
+		mav.addObject("notice", notice);
+		mav.setViewName("client/notice/detail");
+		noticeService.noticeHit(notice.getNotice_id());
 		return mav;
 	}
 }

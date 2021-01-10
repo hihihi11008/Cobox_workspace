@@ -1,9 +1,11 @@
+<%@page import="com.koreait.cobox.model.domain.Division"%>
 <%@page import="com.koreait.cobox.common.Pager"%>
 <%@page import="com.koreait.cobox.model.domain.Notice"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
 	List<Notice> noticeList= (List<Notice>)request.getAttribute("noticeList");
+
 	Pager pager = new Pager();
 	pager.init(request, noticeList);
 %>
@@ -82,22 +84,45 @@ a:hover {
 	font-weight:bold;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	getDivisionList();
+}); 
 
+/* 비동기 방식으로 구분리스트 가져오기  */
+
+function getDivisionList(){
+	//alert("안녕");
+	$.ajax({
+		url:"/client/notice/divisionlist",
+		type:"get",
+		success:function(result){
+			$(".pill-nav").empty();
+			$(".pill-nav").append("<a href=\"/client/notice/list\" class=\"active\">전체</a>");
+
+			for (var i = 0; i < result.length; i++) {
+				var division = result[i];
+				$(".pill-nav").append("<a href=\"/client/notice/listz?division_id="+division.division_id+"\">"+division.dname+"</a>")
+
+			}
+		}
+	});
+}
+</script>
 </head>
-<body>
+<body><!-- id="href 이름" -->
 <!-- 글씨체 변경가능!!!  -->
 <h2 style="font-family:맑은 고딕;">공지/뉴스</h2>
 <p>COBOX의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다</p>
-
+<!-- client!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <div class="pill-nav" style="border-bottom:2px solid black;">
-	<a class="active" href="#home">전체</a>
-	<a href="#news">시스템점검</a>
-	<a href="#contact">극장</a>
-	<a href="#about">기타</a>
+	<a  class="active" href="#home">전체</a>
 </div>
 
 <p>총 <%=noticeList.size() %>건이 검색되었습니다.</p>
 
+<div>
 	<table>
 		<tr>
 			<th>No.</th>
@@ -127,16 +152,16 @@ a:hover {
 			<td colspan="6" style="text-align: center">
 			<%for(int i=pager.getFirstPage();i<=pager.getLastPage();i++){ %>
 			<%if(i>pager.getTotalPage()) break; %>
-				<a <%if(pager.getCurrentPage()==i){ %>class="pageNum"<%} %> href="/admin/notice/list?currentPage=<%=i%>">[<%=i %>]</a>
+				<a <%if(pager.getCurrentPage()==i){ %>class="pageNum"<%} %> href="/client/notice/list?currentPage=<%=i%>">[<%=i %>]</a>
 			<%} %>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="6">
-				<button onclick="location.href='registform'">글등록</button>
+				<button onclick="alert('관리자만이용가능합니당');">글등록</button>
 			</td>
 		</tr>
 	</table>
-
+</div>
 </body>
 </html>

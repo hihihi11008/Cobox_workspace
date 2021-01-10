@@ -6,6 +6,7 @@ import com.koreait.cobox.model.domain.Notice;
 
 public interface NoticeService {
 	public List<Notice> selectAll(); //공지 전체글 가져오기
+	public List<Notice> selectAllById(int division_id); // 구분값에 따른 공지리스트 가져오기
 	public Notice select(int notice_id); // 공지 1건 가져오기
 	public void insert(Notice notice); //1건 등록하기
 	public void update(Notice notice); // 1건 수정하기 
