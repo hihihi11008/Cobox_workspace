@@ -1,5 +1,5 @@
 <%@page import="com.koreait.cobox.model.domain.Division"%>
-<%@page import="com.koreait.cobox.common.Pager"%>
+<%@page import="com.koreait.cobox.model.common.Pager"%>
 <%@page import="com.koreait.cobox.model.domain.Notice"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>

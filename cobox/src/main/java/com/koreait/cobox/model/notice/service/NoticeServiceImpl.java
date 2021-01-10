@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreait.cobox.exception.NoticeException;
+import com.koreait.cobox.model.common.MailSender;
 import com.koreait.cobox.model.domain.Notice;
 import com.koreait.cobox.model.notice.repository.NoticeDAO;
 
@@ -14,6 +15,10 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Autowired
 	private NoticeDAO noticeDAO; 
+	
+	//메일발송객체 
+	@Autowired
+	private MailSender mailSender;
 
 	@Override
 	public List<Notice> selectAll() {
