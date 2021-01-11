@@ -2,6 +2,8 @@ package com.koreait.cobox.model.notice.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.koreait.cobox.model.domain.Notice;
 
 public interface NoticeService {
@@ -12,5 +14,6 @@ public interface NoticeService {
 	public void update(Notice notice); // 1건 수정하기 
 	public void noticeHit(int notice_id); // 조회수 증가 
 	public void delete(Notice notice); // 1건 삭제하기
+	//public void sendMail(Member contact);
 	
 }

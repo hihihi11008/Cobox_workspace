@@ -2,11 +2,12 @@ package com.koreait.cobox.model.notice.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreait.cobox.exception.NoticeException;
-import com.koreait.cobox.model.common.MailSender;
 import com.koreait.cobox.model.domain.Notice;
 import com.koreait.cobox.model.notice.repository.NoticeDAO;
 
@@ -16,9 +17,7 @@ public class NoticeServiceImpl implements NoticeService{
 	@Autowired
 	private NoticeDAO noticeDAO; 
 	
-	//메일발송객체 
-	@Autowired
-	private MailSender mailSender;
+	
 
 	@Override
 	public List<Notice> selectAll() {
@@ -56,5 +55,16 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<Notice> selectAllById(int division_id) {
 		return noticeDAO.selectAllById(division_id);
 	}
-
+	
+	//문의 사항 관리자에게 보내기 
+//	public void sendMail(HttpServletRequest request) throws MailSendException{
+//		String name = request.getParameter("uName");
+//		System.out.println("고객이름은? " +name);
+		/* String email = member.getEmail_id()+"@"+member.getEmail_server(); */
+		//String name;
+		//String email;
+		//String message;
+		//메일보내기 
+		//mailSender.send(null, null, null);
+	//}
 }

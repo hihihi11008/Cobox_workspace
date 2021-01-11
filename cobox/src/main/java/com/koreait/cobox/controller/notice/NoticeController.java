@@ -2,11 +2,12 @@ package com.koreait.cobox.controller.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.cobox.exception.NoticeException;
+import com.koreait.cobox.model.common.MailSender;
+import com.koreait.cobox.model.common.MessageData;
 import com.koreait.cobox.model.domain.Division;
 import com.koreait.cobox.model.domain.Notice;
 import com.koreait.cobox.model.notice.service.DivisionService;
@@ -28,6 +31,10 @@ public class NoticeController {
 	
 	@Autowired
 	private DivisionService divisionService;
+	
+	//메일발송객체 
+	@Autowired
+	private MailSender mailSender;
 	
 	//공지 등록폼 가져오기 
 	@RequestMapping(value = "/admin/notice/registform")
@@ -112,7 +119,7 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		List<Notice> noticeList = noticeService.selectAll();
 		mav.addObject("noticeList",noticeList);
-		mav.setViewName("client/notice/list");
+		mav.setViewName("client/notice/noticelist");
 		return mav;
 	}
 	
@@ -127,8 +134,7 @@ public class NoticeController {
 	
 	
 	 //구분id 에 따른 공지리스트 보기
-	 
-	 @RequestMapping(value = "/client/notice/listz", method = RequestMethod.GET)
+	 @RequestMapping(value = "/client/notice/noticelist2", method = RequestMethod.GET)
 	 public ModelAndView getCinemaNoticeByDivision(int division_id) { 
 		 logger.debug("division_id 는????" + division_id);
 		 List<Notice> noticeList = noticeService.selectAllById(division_id); 
@@ -136,19 +142,47 @@ public class NoticeController {
 		 ModelAndView mav = new ModelAndView(); 
 		 mav.addObject("noticeList", noticeList);
 		 //logger.debug("dname은??????" + noticeList.get(1).getDivision().getDname());
-		 mav.setViewName("client/notice/listz");
+		 mav.setViewName("client/notice/noticelist2");
 		 return mav; 
 	 }
 
 
 	//공지 상세보기 요청 + 조회수 증가 
-	@RequestMapping(value = "/client/notice/detail", method = RequestMethod.GET)
+	@RequestMapping(value = "/client/notice/noticedetail", method = RequestMethod.GET)
 	public ModelAndView getCinemaNoticeDetail(int notice_id) {
 		ModelAndView mav = new ModelAndView();
 		Notice notice = noticeService.select(notice_id);
 		mav.addObject("notice", notice);
-		mav.setViewName("client/notice/detail");
+		mav.setViewName("client/notice/noticedetail");
 		noticeService.noticeHit(notice.getNotice_id());
+		return mav;
+	}
+	
+	//1:1문의 메일폼 불러오기  
+	@RequestMapping(value = "/client/contact/contactform", method = RequestMethod.GET)
+	public String getContactForm() {
+		return "client/contact/contact_form";
+	}
+	
+	//1:1 메일 보내기 
+	@RequestMapping(value = "/client/contact/sendmail", method = RequestMethod.POST)
+	public ModelAndView sendMail(HttpServletRequest request) {
+		String name = request.getParameter("uname");
+		String email = request.getParameter("uemail");
+		String message = request.getParameter("umessage");
+		logger.debug("받아온 이름은 ? " + name);
+		logger.debug("받아온 메일은 ? " + email);
+		logger.debug("받아온 내용은 ? " + message);
+		
+		mailSender.send(email, name, message);
+		
+		MessageData messageData = new MessageData();
+		messageData.setResultCode(1);
+		messageData.setMsg("문의사항 전송이 완료되었습니다.\n빠른시일내에 회신드리겠습니다.");
+		messageData.setUrl("/client/contact/contactform");
+		
+		ModelAndView mav = new ModelAndView("client/error/message");
+		mav.addObject("messageData", messageData);
 		return mav;
 	}
 }
