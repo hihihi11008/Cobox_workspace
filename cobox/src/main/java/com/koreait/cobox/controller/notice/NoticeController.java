@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.koreait.cobox.exception.NoticeException;
 import com.koreait.cobox.model.common.MailSender;
 import com.koreait.cobox.model.common.MessageData;
+import com.koreait.cobox.model.common.Pager;
 import com.koreait.cobox.model.domain.Division;
 import com.koreait.cobox.model.domain.Notice;
 import com.koreait.cobox.model.notice.service.DivisionService;
@@ -35,6 +36,11 @@ public class NoticeController {
 	//메일발송객체 
 	@Autowired
 	private MailSender mailSender;
+	
+	//페이징처리 
+	@Autowired
+	private Pager pager;
+	
 	
 	//공지 등록폼 가져오기 
 	@RequestMapping(value = "/admin/notice/registform")
@@ -57,10 +63,11 @@ public class NoticeController {
 	
 	//공지사항 전체 가져오기 
 	@RequestMapping(value = "/admin/notice/list", method = RequestMethod.GET)
-	public ModelAndView selectAll() {
+	public ModelAndView selectAll(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<Notice> noticeList = noticeService.selectAll();
-		mav.addObject("noticeList",noticeList);
+		pager.init(request, noticeList);
+		mav.addObject("pager",pager);
 		mav.setViewName("admin/notice/list");
 		return mav;
 	}
@@ -115,10 +122,11 @@ public class NoticeController {
 	********************************************************/
 	//공지 리스트 보기 
 	@RequestMapping(value = "/client/notice/list", method = RequestMethod.GET)
-	public ModelAndView getCinemaNotice() {
+	public ModelAndView getCinemaNotice(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		List<Notice> noticeList = noticeService.selectAll();
-		mav.addObject("noticeList",noticeList);
+		pager.init(request, noticeList);
+		mav.addObject("pager",pager);
 		mav.setViewName("client/notice/noticelist");
 		return mav;
 	}
@@ -135,12 +143,13 @@ public class NoticeController {
 	
 	 //구분id 에 따른 공지리스트 보기
 	 @RequestMapping(value = "/client/notice/noticelist2", method = RequestMethod.GET)
-	 public ModelAndView getCinemaNoticeByDivision(int division_id) { 
+	 public ModelAndView getCinemaNoticeByDivision(HttpServletRequest request, int division_id) { 
 		 logger.debug("division_id 는????" + division_id);
 		 List<Notice> noticeList = noticeService.selectAllById(division_id); 
 		 
 		 ModelAndView mav = new ModelAndView(); 
-		 mav.addObject("noticeList", noticeList);
+		 pager.init(request, noticeList);
+		 mav.addObject("pager",pager);
 		 //logger.debug("dname은??????" + noticeList.get(1).getDivision().getDname());
 		 mav.setViewName("client/notice/noticelist2");
 		 return mav; 
@@ -178,8 +187,8 @@ public class NoticeController {
 		
 		MessageData messageData = new MessageData();
 		messageData.setResultCode(1);
-		messageData.setMsg("문의사항 전송이 완료되었습니다.\n빠른시일내에 회신드리겠습니다.");
-		messageData.setUrl("/client/contact/contactform");
+		messageData.setMsg("문의사항 전송이 완료되었습니다.");
+		messageData.setUrl("redirect:/client/contact/contactform");
 		
 		ModelAndView mav = new ModelAndView("client/error/message");
 		mav.addObject("messageData", messageData);
