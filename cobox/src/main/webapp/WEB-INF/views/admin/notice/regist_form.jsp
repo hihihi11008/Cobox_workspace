@@ -1,6 +1,6 @@
 <%@page import="com.koreait.cobox.model.domain.Division"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%
  List<Division> divisionList = (List)request.getAttribute("divisionList");
 %>
@@ -84,18 +84,26 @@ input[type=button]:hover {
   }
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(function(){
+	CKEDITOR.replace("contents");
+}); 
+
 function regist(){
 	if (confirm("공지사항을 등록하시겠습니까?")) {
 		var form = document.querySelector("form");
 		form.action="/admin/notice/regist";
 		form.method="post";
 	}
-		form.submit();
+	form.submit();
 }
 </script>
+<%@ include file="../inc/header.jsp" %>
 </head>
 <body>
+<%@ include file="../inc/main_navi.jsp" %>
 
 <h2>공지사항 등록</h2>
 
@@ -141,7 +149,7 @@ function regist(){
     </div>
     <div class="row">
       <div class="col">
-        <textarea id="subject" name="contents" placeholder="내용작성.." style="height:200px"></textarea>
+        <textarea id="contents" name="contents" placeholder="내용작성.." style="height:200px"></textarea>
       </div>
     </div>
     <div class="row">

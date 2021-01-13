@@ -1,7 +1,7 @@
 <%@page import="com.koreait.cobox.model.domain.Notice"%>
 <%@page import="com.koreait.cobox.model.domain.Division"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%
 	Notice notice = (Notice)request.getAttribute("notice");
 %>
@@ -113,8 +113,10 @@ $(function(){
 	});
 });
 </script>
+<%@ include file="../inc/header.jsp" %>
 </head>
 <body>
+<%@ include file="../inc/main_navi.jsp" %>
 
 <h2>공지사항 상세보기</h2>
 

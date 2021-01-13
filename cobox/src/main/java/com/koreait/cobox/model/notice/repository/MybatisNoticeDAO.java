@@ -51,10 +51,15 @@ public class MybatisNoticeDAO implements NoticeDAO{
 	}
 
 	@Override
-	public void noticeHit(int notice_id) {
+	public void noticeHit(int notice_id) throws NoticeException{
 		int result = sqlSessionTemplate.update("Notice.noticeHit", notice_id);
 		if (result==0) {
 			throw new NoticeException("조회수 증가 실패하였습니다.");
 		}
 	}
+
+	@Override
+	public List<Notice> selectAllById(int division_id) {
+		return sqlSessionTemplate.selectList("Notice.selectAllById", division_id);
+	} 
 }

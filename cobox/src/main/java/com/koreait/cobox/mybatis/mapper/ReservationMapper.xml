@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reservation">
+	<!--예약정보-->
+	<insert id="insert">
+		insert into reservation(reservation_id,member_id,schedule_id,snack_id,seatquantity) 
+		values(seq_reservation.nextval,#{member_id},#{schedule_id},#{snack_id},#{seatquantity})
+	</insert>
+	<insert id="insertById">
+		insert into reservation(reservation_id,member_id,schedule_id,snack_id,seatquantity) 
+		values(seq_reservation.nextval,#{member_id},#{schedule_id},#{snack_id},#{seatquantity})
+	</insert>
+	<select id="selectAll" parameterType="Reservation" resultType="int">
+		select * from reservation where reservation_id=#{reservation_id}
+	</select>
+</mapper>
