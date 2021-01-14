@@ -50,4 +50,8 @@ $(function(){
 		});
 	</script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

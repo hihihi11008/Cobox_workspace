@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 
 <%@page import="com.koreait.cobox.model.domain.Movie"%>
 <%@page import="com.koreait.cobox.model.domain.Rating"%>
 <%@page import="com.koreait.cobox.model.domain.Genre"%>
+=======
+<%@page import="com.koreait.cobox.model.domain.Movie"%>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%
 Movie movie=(Movie)request.getAttribute("movie");
+<<<<<<< HEAD
 out.print("요청객체에 담겨진 movie_id"+movie.getMovie_id());
+=======
+out.print("요청객체에 담겨진 movie"+movie);
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 %>
 
 <!DOCTYPE html>

@@ -36,7 +36,11 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
+<<<<<<< HEAD
       <a href="/admin/notice/list">공지사항게시판</a>
+=======
+      <a href="#">공지사항게시판</a>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
       <a href="#">문의게시판</a>
       <a href="#">Link 3</a>
     </div>

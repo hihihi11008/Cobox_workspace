@@ -54,7 +54,11 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public List<Notice> selectAllById(int division_id) {
 		return noticeDAO.selectAllById(division_id);
+<<<<<<< HEAD
 	} 
+=======
+	}
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 	
 	//문의 사항 관리자에게 보내기 
 //	public void sendMail(HttpServletRequest request) throws MailSendException{
@@ -67,4 +71,8 @@ public class NoticeServiceImpl implements NoticeService{
 		//메일보내기 
 		//mailSender.send(null, null, null);
 	//}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

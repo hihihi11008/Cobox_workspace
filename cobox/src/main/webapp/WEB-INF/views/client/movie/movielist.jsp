@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="com.koreait.cobox.model.domain.Movie"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -5,6 +6,9 @@
 List<Movie> movieList = (List)request.getAttribute("movieList");
 out.print("movieList의 사이즈"+movieList.size());
 %>
+=======
+<%@ page contentType="text/html; charset=UTF-8"%>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +20,16 @@ out.print("movieList의 사이즈"+movieList.size());
         <!-- Main content -->
         <section class="container">
             <div class="col-sm-12">
+<<<<<<< HEAD
                 <h2 class="page-heading">영화 목록</h2>
                 <div class="select-area">
                     <form class="select" method='get'>
                     <!-- 도시 -->
+=======
+                <h2 class="page-heading">Movies</h2>
+                <div class="select-area">
+                    <form class="select" method='get'>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
                           <select name="select_item" class="select__sort" tabindex="0">
                             <option value="1" selected='selected'>London</option>
                             <option value="2">New York</option>
@@ -59,6 +69,7 @@ out.print("movieList의 사이즈"+movieList.size());
                     </form>
                 </div>
                 <!-- Movie preview item -->
+<<<<<<< HEAD
 				<%for(int i=0;i<movieList.size();i++){ %>
 				<%Movie movie=movieList.get(i); %>
                 <div class="movie movie--preview movie--full release">
@@ -83,6 +94,28 @@ out.print("movieList의 사이즈"+movieList.size());
                     </div>
                 </div>
                 <%} %>
+=======
+                <div class="movie movie--preview movie--full release">
+                     <div class="col-sm-3 col-md-2 col-lg-2">
+                            <div class="movie__images">
+                                <img alt='' src="/resources/images/movie/movie-sample1.jpg">
+                            </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                            <a href='/movie/detail' class="movie__title link--huge">Last Vegas (2013)</a>
+
+                            <p class="movie__time">105 min</p>
+
+                            <p class="movie__option"><strong>Country: </strong><a href="#">USA</a></p>
+                            <p class="movie__option"><strong>Category: </strong><a href="#">Comady</a></p>
+                            <p class="movie__option"><strong>Release date: </strong>November 1, 2013</p>
+                            <p class="movie__option"><strong>Director: </strong><a href="#">Jon Turteltaub</a></p>
+                            <p class="movie__option"><strong>Actors: </strong><a href="#">Robert De Niro</a>, <a href="#">Michael Douglas</a>, <a href="#">Morgan Freeman</a>, <a href="#">Kevin Kline</a>, <a href="#">Mary Steenburgen</a>, <a href="#">Jerry Ferrara</a>, <a href="#">Romany Malco</a> <a href="#">...</a></p>
+                            <p class="movie__option"><strong>Age restriction: </strong><a href="#">13</a></p>
+                    </div>
+                </div>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
                 <!-- end movie preview item -->
                 <div class="coloum-wrapper">
                     <div class="pagination paginatioon--full">

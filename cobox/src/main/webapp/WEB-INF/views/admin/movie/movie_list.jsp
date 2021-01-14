@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 
 <%@page import="com.koreait.cobox.model.domain.Movie"%>
 <%@page import="java.util.List"%>
 <%@page import="com.koreait.cobox.model.domain.Genre"%>
+=======
+<%@page import="com.koreait.cobox.model.domain.Movie"%>
+<%@page import="java.util.List"%>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%
@@ -60,4 +65,8 @@ $(function(){
 </p>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

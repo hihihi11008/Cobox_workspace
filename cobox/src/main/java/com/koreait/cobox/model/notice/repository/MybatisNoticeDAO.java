@@ -62,4 +62,8 @@ public class MybatisNoticeDAO implements NoticeDAO{
 	public List<Notice> selectAllById(int division_id) {
 		return sqlSessionTemplate.selectList("Notice.selectAllById", division_id);
 	} 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

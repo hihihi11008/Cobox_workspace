@@ -8,6 +8,7 @@
 </style>
 <script>
 $(document).on('click', '.number-spinner button', function () {    
+<<<<<<< HEAD
    var btn = $(this),
       oldValue = btn.closest('.number-spinner').find('input').val().trim(),
       newVal = 0;
@@ -22,6 +23,22 @@ $(document).on('click', '.number-spinner button', function () {
       }
    }
    btn.closest('.number-spinner').find('input').val(newVal);
+=======
+	var btn = $(this),
+		oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+		newVal = 0;
+	
+	if (btn.attr('data-dir') == 'up') {
+		newVal = parseInt(oldValue) + 1;
+	} else {
+		if (oldValue > 1) {
+			newVal = parseInt(oldValue) - 1;
+		} else {
+			newVal = 1;
+		}
+	}
+	btn.closest('.number-spinner').find('input').val(newVal);
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 });
 </script>
 <body class="single-cin"> 
@@ -43,6 +60,7 @@ $(document).on('click', '.number-spinner button', function () {
                       <!-- Tab panes -->
                       <div class="tab-content">
                         <div class="tab-pane active" id="popcorn">
+<<<<<<< HEAD
                          <div class="row">
                          <div class="gallery-wrapper">
                              <div class="col-sm-6">
@@ -60,10 +78,30 @@ $(document).on('click', '.number-spinner button', function () {
                              </div>
                           </div>
                         </div>
+=======
+			                <div class="row">
+			                <div class="gallery-wrapper">
+			                    <div class="col-sm-6">
+			                        <div class="gallery-item">
+			                                <img alt='' src="/resources/images/client-photo/post-awards.jpg">
+			                                <p style="font-size:20px">오리지널팝콘</p>
+	                               	 		<p style="font-size:20px">5000원</p>
+			                                <td class="qty">
+											        <span class="qty-minus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1" style="color:black">
+											        <span class="qty-plus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+											</td>
+			                                <button type="button" class="btn btn-primary btn-sm gallery-item__icon"><i class="fa fa-shopping-cart"></i></button>
+			                        </div>
+			                    </div>
+		                    </div>
+	                     </div>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
                       </div>
                       
                       
                         <div class="tab-pane" id="hotdog">
+<<<<<<< HEAD
                          <div class="row">
                          <div class="gallery-wrapper">
                              <div class="col-sm-6">
@@ -81,10 +119,30 @@ $(document).on('click', '.number-spinner button', function () {
                              </div>
                           </div>
                         </div>
+=======
+			                <div class="row">
+			                <div class="gallery-wrapper">
+			                    <div class="col-sm-6">
+			                        <div class="gallery-item">
+			                                <img alt='' src="/resources/images/client-photo/post-awards.jpg">
+			                                <p style="font-size:20px">치즈핫도그</p>
+	                               	 		<p style="font-size:20px">5000원</p>
+			                                <td class="qty">
+											        <span class="qty-minus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1" style="color:black">
+											        <span class="qty-plus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+											</td>
+			                                <button type="button" class="btn btn-primary btn-sm gallery-item__icon"><i class="fa fa-shopping-cart"></i></button>
+			                        </div>
+			                    </div>
+		                    </div>
+	                     </div>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
                       </div>
                       
                       
                         <div class="tab-pane" id="drink">
+<<<<<<< HEAD
                          <div class="row">
                          <div class="gallery-wrapper">
                              <div class="col-sm-6">
@@ -102,6 +160,25 @@ $(document).on('click', '.number-spinner button', function () {
                              </div>
                           </div>
                         </div>
+=======
+			                <div class="row">
+			                <div class="gallery-wrapper">
+			                    <div class="col-sm-6">
+			                        <div class="gallery-item">
+			                                <img alt='' src="/resources/images/client-photo/post-awards.jpg">
+			                                <p style="font-size:20px">콜라</p>
+	                               	 		<p style="font-size:20px">5000원</p>
+			                                <td class="qty">
+											        <span class="qty-minus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											        <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1" style="color:black">
+											        <span class="qty-plus btn btn-primary btn-sm gallery-item__icon" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+											</td>
+			                                <button type="button" class="btn btn-primary btn-sm gallery-item__icon"><i class="fa fa-shopping-cart"></i></button>
+			                        </div>
+			                    </div>
+		                    </div>
+	                     </div>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
                       </div>
                       
                       
@@ -110,6 +187,7 @@ $(document).on('click', '.number-spinner button', function () {
             </div>
             </div>
         </section>
+<<<<<<< HEAD
             <%@include file="../inc/footer.jsp"%>
         </div>
         <%@include file="../inc/script.jsp"%>
@@ -118,5 +196,15 @@ $(document).on('click', '.number-spinner button', function () {
                 init_MovieList();
             });
       </script>
+=======
+				<%@include file="../inc/footer.jsp"%>
+        </div>
+        <%@include file="../inc/script.jsp"%>
+		<script type="text/javascript">
+            $(document).ready(function() {
+                init_MovieList();
+            });
+		</script>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 </body>
 </html>

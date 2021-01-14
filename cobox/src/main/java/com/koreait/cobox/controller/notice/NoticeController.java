@@ -48,7 +48,11 @@ public class NoticeController {
 		return "admin/notice/regist_form";
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	/*
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 	//공지사항- 구분(division)값 가져오기 
 	@RequestMapping(value = "/admin/notice/registform", method = RequestMethod.GET)
 	public ModelAndView getDivisionList() {
@@ -59,7 +63,11 @@ public class NoticeController {
 		mav.setViewName("admin/notice/regist_form");
 		return mav;
 	}
+<<<<<<< HEAD
 
+=======
+	*/
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 	
 	//공지사항 전체 가져오기 
 	@RequestMapping(value = "/admin/notice/list", method = RequestMethod.GET)
@@ -194,4 +202,8 @@ public class NoticeController {
 		mav.addObject("messageData", messageData);
 		return mav;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

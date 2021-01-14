@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 <%@page import="com.koreait.cobox.model.domain.Rating"%>
+=======
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 <%@page import="com.koreait.cobox.model.domain.Genre"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
@@ -152,6 +155,7 @@ var genre=[];//선택한 장르사이즈를 담는 배열
 
 	<h3>영화 등록</h3>
 	<div class="container">
+<<<<<<< HEAD
 		<form>
 			<h4>장르선택(복수 가능)</h4>
 			<input type="checkbox" id="genre_name" name="genre_name" value="hrror" />hrror
@@ -177,23 +181,61 @@ var genre=[];//선택한 장르사이즈를 담는 배열
 			<input type="checkbox" id="genre_name" name="genre_name" value="adventure" />adventure
 			<input type="checkbox" id="genre_name" name="genre_name" value="history" />history
 			<input type="checkbox" id="genre_name" name="genre_name" value="war" />war
+=======
+		<form id="form">
+			<h4>장르선택(복수 가능)</h4>
+			<input type="checkbox" id="genre_name" name="genre_name" value="공포/호러" />공포/호러
+			<input type="checkbox" id="genre_name" name="genre_name" value="드라마" />드라마
+			<input type="checkbox" id="genre_name" name="genre_name" value="SF" />SF
+			<input type="checkbox" id="genre_name" name="genre_name" value="멜로/로맨스" />멜로/로맨스
+			<input type="checkbox" id="genre_name" name="genre_name" value="코미디" />코미디
+			<p>
+			<input type="checkbox" id="genre_name" name="genre_name" value="애니메이션" />애니메이션
+			<input type="checkbox" id="genre_name" name="genre_name" value="느와르" />느와르
+			<input type="checkbox" id="genre_name" name="genre_name" value="다큐멘터리" />다큐멘터리
+			<input type="checkbox" id="genre_name" name="genre_name" value="뮤직" />뮤직
+			<input type="checkbox" id="genre_name" name="genre_name" value="미스터리" />미스터리
+			<p>
+			<input type="checkbox" id="genre_name" name="genre_name" value="범죄" />범죄
+			<input type="checkbox" id="genre_name" name="genre_name" value="옴니버스" />옴니버스
+			<input type="checkbox" id="genre_name" name="genre_name" value="스릴러" />스릴러
+			<input type="checkbox" id="genre_name" name="genre_name" value="스포츠" />스포츠
+			<input type="checkbox" id="genre_name" name="genre_name" value="시대극/사극" />시대극/사극
+			<p>
+			<input type="checkbox" id="genre_name" name="genre_name" value="아동" />아동
+			<input type="checkbox" id="genre_name" name="genre_name" value="액션" />액션
+			<input type="checkbox" id="genre_name" name="genre_name" value="어드벤쳐" />어드벤쳐
+			<input type="checkbox" id="genre_name" name="genre_name" value="역사" />역사
+			<input type="checkbox" id="genre_name" name="genre_name" value="전쟁" />전쟁
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 			
 
 			<input type="text" name="movie_name" placeholder="영화명"> 
 
 			<select name="rating_id">		
 				<option >관람등급 선택</option>
+<<<<<<< HEAD
 				<option value="1">all</option>
 				<option value="2">12</option>
 				<option value="3">15</option>
 				<option value="4">adult</option>
+=======
+				<option value="1">전체관람가</option>
+				<option value="2">12세관람가</option>
+				<option value="3">15세관람가</option>
+				<option value="4">청소년관람불가</option>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 			</select>
 			
 			 <input type="text" name="director" placeholder="감독">
 			 <input type="text" name="actor" placeholder="배우">
 			 <input type="text" name="release" placeholder="개봉일" id="datepicker1">
+<<<<<<< HEAD
 			 <h4>줄거리</h4>
 			<textarea id="story" name="story" placeholder="영화 줄거리" style="height: 200px"></textarea>
+=======
+			<textarea id="story" name="story" placeholder="영화 줄거리" style="height: 200px">줄거리</textarea>
+>>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 
 			
 			<p>
