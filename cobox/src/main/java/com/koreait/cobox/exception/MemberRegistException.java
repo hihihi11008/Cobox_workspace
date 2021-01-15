@@ -1,6 +1,7 @@
 package com.koreait.cobox.exception;
 
 public class MemberRegistException extends RuntimeException{
+	
 	public MemberRegistException(String msg) {
 		super(msg);
 	}

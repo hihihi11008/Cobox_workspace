@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.koreait.cobox.exception.NoticeException;
+import com.koreait.cobox.exception.NoticeDeleteException;
+import com.koreait.cobox.exception.NoticeEditException;
+import com.koreait.cobox.exception.NoticeRegistException;
 import com.koreait.cobox.model.domain.Notice;
 
 @Repository
@@ -27,34 +29,34 @@ public class MybatisNoticeDAO implements NoticeDAO{
 	}
 
 	@Override
-	public void insert(Notice notice) throws NoticeException{
+	public void insert(Notice notice) throws NoticeRegistException{
 		int result = sqlSessionTemplate.insert("Notice.insert", notice);
 		if (result==0) {
-			throw new NoticeException("공지글 등록에 실패하였습니다.");
+			throw new NoticeRegistException("공지글 등록에 실패하였습니다.");
 		}
 	}
 
 	@Override
-	public void update(Notice notice) throws NoticeException{
+	public void update(Notice notice) throws NoticeEditException{
 		int result = sqlSessionTemplate.update("Notice.update", notice);
 		if (result==0) {
-			throw new NoticeException("공지글 수정 실패하였습니다.");
+			throw new NoticeEditException("공지글 수정 실패하였습니다.");
 		}
 	}
 
 	@Override
-	public void delete(Notice notice) throws NoticeException{
+	public void delete(Notice notice) throws NoticeDeleteException{
 		int result = sqlSessionTemplate.delete("Notice.delete", notice);
 		if (result==0) {
-			throw new NoticeException("공지글 삭제 실패하였습니다.");
+			throw new NoticeDeleteException("공지글 삭제 실패하였습니다.");
 		}
 	}
 
 	@Override
-	public void noticeHit(int notice_id) throws NoticeException{
+	public void noticeHit(int notice_id) throws NoticeEditException{
 		int result = sqlSessionTemplate.update("Notice.noticeHit", notice_id);
 		if (result==0) {
-			throw new NoticeException("조회수 증가 실패하였습니다.");
+			throw new NoticeEditException("조회수 증가 실패하였습니다.");
 		}
 	}
 
@@ -62,8 +64,4 @@ public class MybatisNoticeDAO implements NoticeDAO{
 	public List<Notice> selectAllById(int division_id) {
 		return sqlSessionTemplate.selectList("Notice.selectAllById", division_id);
 	} 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

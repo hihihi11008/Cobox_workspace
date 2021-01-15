@@ -44,10 +44,6 @@ body {
 $(function(){
 	getDivisionList();
 }); 
-<<<<<<< HEAD
-=======
-
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 /* 비동기 방식으로 구분리스트 가져오기  */
 function getDivisionList(){
 	//alert("안녕");
@@ -56,15 +52,10 @@ function getDivisionList(){
 		type:"get",
 		success:function(result){
 			$(".pill-nav").empty();
-<<<<<<< HEAD
 			$(".pill-nav").append("<a href=\"/client/notice/list\" class=\"active\">전체</a>");
-=======
-			$(".pill-nav").append("<a href=\"/client/notice/noticelist\" class=\"active\">전체</a>");
-
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 			for (var i = 0; i < result.length; i++) {
 				var division = result[i];
-				$(".pill-nav").append("<a href=\"/client/notice/noticelist2?division_id="+division.division_id+"\">"+division.dname+"</a>")
+				$(".pill-nav").append("<a href=\"/client/notice/listByDivision?division_id="+division.division_id+"\">"+division.dname+"</a>")
 			}
 		}
 	});
@@ -83,11 +74,7 @@ function getDivisionList(){
 			<div class="col-sm-8 col-md-9 col-sm-push-4 col-md-push-3" id="notice">
 				<p>COBOX의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다</p>
 				<div class="pill-nav" style="border-bottom:2px solid black;">
-<<<<<<< HEAD
 					<a  class="active" href="/client/notice/list">전체</a>
-=======
-					<a  class="active" href="#home">전체</a>
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 				</div>
 			
 				<!-- News post article-->
@@ -149,8 +136,4 @@ function getDivisionList(){
 	});
 </script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523

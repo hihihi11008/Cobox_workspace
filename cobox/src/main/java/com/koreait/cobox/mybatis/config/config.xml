@@ -4,16 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.koreait.cobox.model.domain.Notice" 	alias="Notice"/>		
-		<typeAlias type="com.koreait.cobox.model.domain.Division"	alias="Division"/>
-		<typeAlias type="com.koreait.cobox.model.domain.Genre" 		alias="Genre" />
-		<typeAlias type="com.koreait.cobox.model.domain.Rating" 	alias="Rating" />
-		<typeAlias type="com.koreait.cobox.model.domain.Movie" 		alias="Movie" />
-		<typeAlias type="com.koreait.cobox.model.domain.Comments" alias="Comments"/>
-		<typeAlias type="com.koreait.cobox.model.domain.Location" 	alias="Location"/>
-		<typeAlias type="com.koreait.cobox.model.domain.Theater"	alias="Theater"/>
-		<typeAlias type="com.koreait.cobox.model.domain.Member"	alias="Member"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Notice" 		alias="Notice"/>		
+		<typeAlias type="com.koreait.cobox.model.domain.Division"		alias="Division"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Genre" 			alias="Genre" />
+		<typeAlias type="com.koreait.cobox.model.domain.Rating" 		alias="Rating" />
+		<typeAlias type="com.koreait.cobox.model.domain.Movie" 			alias="Movie" />
+		<typeAlias type="com.koreait.cobox.model.domain.Comments"	alias="Comments"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Location" 		alias="Location"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Theater"		alias="Theater"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Member"		alias="Member"/>
 		<typeAlias type="com.koreait.cobox.model.domain.Reservation"	alias="Reservation"/>
+		<typeAlias type="com.koreait.cobox.model.domain.Paymethod"	alias="Paymethod"/>
+		<typeAlias type="com.koreait.cobox.model.domain.ResSummary"		alias="ResSummary"/>
 				
 	</typeAliases>
 	
@@ -26,7 +28,9 @@
 		<mapper resource="com/koreait/cobox/mybatis/mapper/LocationMapper.xml"/>
 		<mapper resource="com/koreait/cobox/mybatis/mapper/TheaterMapper.xml"/>
 		<mapper resource="com/koreait/cobox/mybatis/mapper/MemberMapper.xml"/>
-		
+		<mapper resource="com/koreait/cobox/mybatis/mapper/PaymethodMapper.xml"/>
+		<mapper resource="com/koreait/cobox/mybatis/mapper/PaymethodMapper.xml"/>
+		<mapper resource="com/koreait/cobox/mybatis/mapper/ResSummaryMapper.xml"/>
 		
 	</mappers>
 	

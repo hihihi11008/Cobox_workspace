@@ -81,15 +81,11 @@ a:hover {
 	font-weight:bold;
 }
 </style>
-<<<<<<< HEAD
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 </script>
 <%@ include file="../inc/header.jsp" %>
-=======
-
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 </head>
 <body>
 <%@ include file="../inc/main_navi.jsp" %>

@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.koreait.cobox.exception.ReservationException;
+import com.koreait.cobox.exception.ReservationRegistException;
 import com.koreait.cobox.model.domain.Member;
 import com.koreait.cobox.model.domain.Reservation;
 
@@ -35,10 +35,10 @@ public class MybatisReservationDAO implements ReservationDAO{
 	}
 
 	
-	public void insert(Reservation reservation) throws ReservationException{
+	public void insert(Reservation reservation) throws ReservationRegistException{
 		int result=sqlSessionTemplate.insert("Reservation.insertById",reservation);
 		if(result==0) {
-			throw new ReservationException("예매에 실패 했습니다.");
+			throw new ReservationRegistException("예매에 실패 했습니다.");
 		}
 	}
 

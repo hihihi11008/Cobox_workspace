@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreait.cobox.model.domain.Member;
+import com.koreait.cobox.model.domain.ResSummary;
 import com.koreait.cobox.model.domain.Reservation;
+import com.koreait.cobox.model.payment.repository.PaymethodDAO;
 import com.koreait.cobox.model.reservation.repository.ReservationDAO;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
 	@Autowired
 	private ReservationDAO reservationDAO;
+	
+
 	
 	@Override
 	public List selectAll() {
@@ -54,5 +58,7 @@ public class ReservationServiceImpl implements ReservationService{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }

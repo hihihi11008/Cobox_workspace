@@ -14,21 +14,13 @@ function sendMail(){
 	}
 	form.submit();
 }
-<<<<<<< HEAD
-
-=======
 */
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 $("form").attr({
 	action:"/client/contact/sendmail",
 	method:"post",
 });	
 $("form").submit();
-<<<<<<< HEAD
-*/
-=======
 
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 $(function(){
 	$("button").click(function(){
 		if (confirm("관리자에게 1:1문의를 보내시겠습니까?")) {
@@ -39,10 +31,7 @@ $(function(){
 		form.submit();
 	});
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 </script>
 </head>
 <body>
