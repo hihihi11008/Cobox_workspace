@@ -6,6 +6,7 @@
 <% 
 	Pager pager = (Pager)request.getAttribute("pager");
 	List<Notice> noticeList= (List)pager.getList();
+	
 %>
 <!doctype html>
 <html>
@@ -73,6 +74,7 @@ function getDivisionList(){
 			<h2 class="page-heading heading--outcontainer">News</h2>
 			<div class="col-sm-8 col-md-9 col-sm-push-4 col-md-push-3" id="notice">
 				<p>COBOX의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다</p>
+				
 				<div class="pill-nav" style="border-bottom:2px solid black;">
 					<a  class="active" href="/client/notice/list">전체</a>
 				</div>
@@ -87,7 +89,7 @@ function getDivisionList(){
 					<%Notice notice = noticeList.get(curPos++); %>
 					<article class="post post--news">
 						<h4><%=num-- %></h4>
-						<h1><a href="/client/notice/noticedetail?notice_id=<%=notice.getNotice_id() %>" class="post__title-link"><%=notice.getTitle() %></a> <h6><%=notice.getDivision().getDname() %></h6></h1> 
+						<h1><a href="/client/notice/noticedetail?notice_id=<%=notice.getNotice_id() %>" class="post__title-link"><%=notice.getTitle() %></a></h1> 
 						<p class="post__date"><%=notice.getRegdate().substring(0, 10)%> </p>
 						<div class="wave-devider"></div>
 						<p class="post__text"><%=notice.getContents() %></p> 

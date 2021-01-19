@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@page import="com.koreait.cobox.model.domain.Movie"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -6,9 +5,7 @@
 List<Movie> movieList = (List)request.getAttribute("movieList");
 out.print("movieList의 사이즈"+movieList.size());
 %>
-=======
 <%@ page contentType="text/html; charset=UTF-8"%>
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
 <!DOCTYPE html>
 <html>
 <head>

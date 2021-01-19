@@ -1,6 +1,8 @@
 package com.koreait.cobox.client.controller.payment;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.koreait.cobox.model.common.MessageData;
 import com.koreait.cobox.model.domain.Member;
 import com.koreait.cobox.model.domain.ResSummary;
 import com.koreait.cobox.model.domain.Reservation;
-import com.koreait.cobox.model.movie.service.MovieService;
+import com.koreait.cobox.model.domain.Schedule;
 import com.koreait.cobox.model.payment.service.PaymentService;
-import com.koreait.cobox.model.reservation.service.ReservationService;
 @Controller
 public class PaymentController {
 	private static final Logger logger=LoggerFactory.getLogger(PaymentController.class);
@@ -64,7 +63,7 @@ public class PaymentController {
 	
 	//결제요청 처리 
 	@PostMapping("/movie/reservation/regist")
-	public ModelAndView pay(HttpSession session, ResSummary payment,Reservation reservation) {
+	public ModelAndView pay(HttpSession session, ResSummary payment,Reservation reservation,Schedule schedule) {
 	logger.debug("결제방법은? "+payment.getPaymethod_id());
 	logger.debug("total_price? "+payment.getTotal_price());
 	logger.debug("tota_pay? "+payment.getTotal_pay());
@@ -73,7 +72,7 @@ public class PaymentController {
 	Member member= (Member)session.getAttribute("member");
 	payment.setMemeber_id(member.getMember_id());
 	
-	paymentService.registReservation(payment,reservation);
+	paymentService.registReservation(payment,reservation,schedule);
 	
 	
 	//결제 완료됐다는  메시지를 보고싶다면 message.jsp로 응답 

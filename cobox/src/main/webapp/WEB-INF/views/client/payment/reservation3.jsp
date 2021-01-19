@@ -8,7 +8,7 @@
 	List<Paymethod> paymethodList = (List)request.getAttribute("paymethodList");
 	List<Reservation> reservationList = (List)request.getAttribute("reservationList");
 	Member member = (Member)session.getAttribute("member");
-	int price = (Integer)session.getAttribute("price");
+	/* int price = (Integer)session.getAttribute("price"); */
 %>
 <!doctype html>
 <html>
@@ -116,8 +116,8 @@ function order(){
 	               
 	               <h2 class="page-heading">price</h2>
 	               <ul class="book-result">
-	                   <li class="book-result__item">Tickets: <span class="book-result__count booking-ticket"><%=%></span></li>
-	                   <li class="book-result__item">One item price: <span class="book-result__count booking-price"><%=Formatter.getCurrency(price) %></span></li>
+	                   <li class="book-result__item">Tickets: <span class="book-result__count booking-ticket">2000</span></li>
+	                   <li class="book-result__item">One item price: <span class="book-result__count booking-price">1000</span></li>
 	                   <li class="book-result__item">Total: <span class="book-result__count booking-cost">30000</span></li>
 	               </ul>
 

@@ -31,7 +31,7 @@
    <!-- AOP설정 *** payment컨트롤러도 추가하기! execution에!!!!!! -->
    <aop:config>
    		<aop:aspect id="sessionCheckAspect" ref="memberSessionCheckAspect">
-   			<aop:pointcut expression="execution(public * com.koreait.cobox.client.controller.reservation..*(..))" id="sessionPointcut"/>
+   			<aop:pointcut expression="execution(public * com.koreait.cobox.client.controller.Notice..*(..))" id="sessionPointcut"/>
    			<aop:around method="sessionCheck" pointcut-ref="sessionPointcut"/>
    		</aop:aspect>
    </aop:config>
