@@ -8,6 +8,6 @@ import lombok.Data;
 public class Location {
 	private int location_id;
 	private String loc_name;
-	//예매페이지에사용
 	private List<Theater> theater;
+
 }

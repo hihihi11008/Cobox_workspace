@@ -33,16 +33,13 @@
 
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="Member">
-		update member set
-		password=#{password}, birth=#{birth}, email_id=#{email_id},
+		update member set password=#{password}, birth=#{birth}, email_id=#{email_id},
 		email_server=#{email_server}, phone=#{phone}
-		where=member_id=#{member_id}
+		where member_id=#{member_id}
 	</update>
 
-	<!-- 회원 탈퇴할 때 아이디와 비밀번호 일치하는지 확인 -->
-	<delete id="delete" parameterType="Member">
-		delete from member where
-		mid=#{mid} and password=#{password}
+	<delete id="delete" parameterType="int">
+		delete from member where member_id=#{member_id}
 	</delete>
 
 

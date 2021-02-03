@@ -25,7 +25,7 @@ public class CommentsServiceImpl implements CommentsService {
 
 	@Override
 	public int delete(int comments_id) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

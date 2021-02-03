@@ -76,10 +76,6 @@ select, #doublecheck {
 	line-height: 10px;
 }
 </style>
-
-<!-- 
- -->
-
 <script>
 //회원가입 버튼을 누르면
 
@@ -89,7 +85,6 @@ select, #doublecheck {
 			regist();
 		});	
 	});
-	
 	
 	//요청이 완료되는 시점에 프로그래스바를 감춘다!!
 	function regist(){
@@ -112,10 +107,6 @@ select, #doublecheck {
 			}
 		});
 	}
-
-
-
-
 </script>
 </head>
 <body class="single-cin">

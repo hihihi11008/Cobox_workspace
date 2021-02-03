@@ -8,5 +8,5 @@ public class Seat {
 	private Theater theater;
 	private String seat_name;
 	private int seat_price;
-	private boolean hold;
+	private String hold;
 }

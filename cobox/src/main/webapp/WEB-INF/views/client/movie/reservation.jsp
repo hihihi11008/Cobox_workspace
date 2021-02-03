@@ -23,7 +23,7 @@
 					<!--First Slide-->
 					<div class="swiper-slide" data-film='The Fifth Estate'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample1.jpg">
+							<img alt='' src="resources/images/movie/movie-sample1.jpg">
 						</div>
 						<p class="choose-film__title">The Fifth Estate</p>
 					</div>
@@ -31,7 +31,7 @@
 					<!--Second Slide-->
 					<div class="swiper-slide" data-film='Ender’s Game'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample2.jpg">
+							<img alt='' src="resources/images/movie/movie-sample2.jpg">
 						</div>
 						<p class="choose-film__title">Ender’s Game</p>
 					</div>
@@ -39,7 +39,7 @@
 					<!--Third Slide-->
 					<div class="swiper-slide" data-film='About Time'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample3.jpg">
+							<img alt='' src="resources/images/movie/movie-sample3.jpg">
 						</div>
 						<p class="choose-film__title">About Time</p>
 					</div>
@@ -47,7 +47,7 @@
 					<!--Four Slide-->
 					<div class="swiper-slide" data-film='Last Vegas'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample4.jpg">
+							<img alt='' src="resources/images/movie/movie-sample4.jpg">
 						</div>
 						<p class="choose-film__title">Last Vegas</p>
 					</div>
@@ -56,7 +56,7 @@
 					<div class="swiper-slide"
 						data-film='The Hunger Games: Cathing Fire'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample5.jpg">
+							<img alt='' src="resources/images/movie/movie-sample5.jpg">
 						</div>
 						<p class="choose-film__title">The Hunger Games: Cathing Fire</p>
 					</div>
@@ -64,7 +64,7 @@
 					<!--Six Slide-->
 					<div class="swiper-slide" data-film='The Counselor'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample6.jpg">
+							<img alt='' src="resources/images/movie/movie-sample6.jpg">
 						</div>
 						<p class="choose-film__title">The Counselor</p>
 					</div>
@@ -72,7 +72,7 @@
 					<!--Seven Slide-->
 					<div class="swiper-slide" data-film='Free Birds'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample7.jpg">
+							<img alt='' src="resources/images/movie/movie-sample7.jpg">
 						</div>
 						<p class="choose-film__title">Free Birds</p>
 					</div>
@@ -80,7 +80,7 @@
 					<!--Eight Slide-->
 					<div class="swiper-slide" data-film='Thor: The Dark World'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample8.jpg">
+							<img alt='' src="resources/images/movie/movie-sample8.jpg">
 						</div>
 						<p class="choose-film__title">Thor: The Dark World</p>
 					</div>
@@ -88,7 +88,7 @@
 					<!--Nine Slide-->
 					<div class="swiper-slide" data-film='The Book Thief'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample9.jpg">
+							<img alt='' src="resources/images/movie/movie-sample9.jpg">
 						</div>
 						<p class="choose-film__title">The Book Thief</p>
 					</div>
@@ -96,7 +96,7 @@
 					<!--Ten Slide-->
 					<div class="swiper-slide" data-film='The Wolf of Wall Stree'>
 						<div class="film-images">
-							<img alt='' src="/resources/images/movie/movie-sample10.jpg">
+							<img alt='' src="resources/images/movie/movie-sample10.jpg">
 						</div>
 						<p class="choose-film__title">The Wolf of Wall Stree</p>
 					</div>
@@ -236,7 +236,7 @@
 	</div>
 	<%@include file="../inc/script.jsp"%>
 	<!-- Custom -->
-	<script src="/resources/js/custom.js"></script>
+	<script src="resources/js/custom.js"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

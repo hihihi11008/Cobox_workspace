@@ -1,6 +1,6 @@
 package com.koreait.cobox.exception;
 
-//CRUD ÀÛ¾÷½Ã ¹ß»ıµÇ´Â ¿¹¿Ü
+//CRUD ì‘ì—…ì‹œ ë°œìƒë˜ëŠ” ì˜ˆì™¸
 public class MailSendException extends RuntimeException{
 	
 	public MailSendException(String msg) {

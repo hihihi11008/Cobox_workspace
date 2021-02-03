@@ -29,7 +29,7 @@ public class MybatisMemberDAO implements MemberDAO {
 	public Member select(Member member) throws MemberNotFoundException {
 		Member obj = sqlSessionTemplate.selectOne("Member.select", member); //여기서 나올수 있는 결과  selectOne 을 써서 에러가 난데요 
 		if (obj == null) {// 가입되지 않은 정보로 로그인을 하려고 하면
-			throw new MemberNotFoundException("가입 된 정보가 없습니다.\n 회원가입을 먼저 진행해주세요.");
+			throw new MemberNotFoundException("가입 된 정보가 없습니다.");
 		}
 		return obj;
 	}
@@ -46,13 +46,13 @@ public class MybatisMemberDAO implements MemberDAO {
 	public void update(Member member) throws MemberEditException {
 		int result = sqlSessionTemplate.update("Member.update", member);
 		if (result != 1) {// 회원수정중에 정보가 다 채워진게 아니라면
-			throw new MemberRegistException("올바르지 않은 회원정보입니다.\n 다시 입력해주세요.");
+			throw new MemberEditException("정보수정에 실패했습니다.");
 		}
 	}
 
 	@Override
 	public void delete(Member member) throws MemberDeleteException {
-		int result = sqlSessionTemplate.delete("Member.delete", member);
+		int result = sqlSessionTemplate.delete("Member.delete", member.getMember_id());
 		if (result == 0) {// 회원가입 중 옳지 않은 정보를 입력하면
 			throw new MemberRegistException("회원탈퇴에 실패했습니다.\n 아이디와 비밀번호를 확인해주세요.");
 		}
@@ -67,8 +67,9 @@ public class MybatisMemberDAO implements MemberDAO {
 
 	@Override
 	public int passChk(Member member) {
-		// TODO Auto-generated method stub
+		int result = sqlSessionTemplate.selectOne("memberMapper.passChk", member);
 		return 0;
 	}
+
 
 }

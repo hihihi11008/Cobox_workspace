@@ -30,10 +30,11 @@ $(function(){
                         <a class="arrow-right" href="#"><span class="slider__info"></span></a>
                     </div>
                     <h1><%=notice.getTitle()%></h1>
-                    <p class="post__date">29 October 2013 </p>
+                    <h4>*<%=notice.getDivision().getDname() %></h4>
+                    <p class="post__date"><%=notice.getRegdate().substring(0, 10) %></p>
+                    
                     <div class="wave-devider"></div>
-                    <h2></h2>
-                    <p><%= notice.getContents() %> </p>
+                    <h6><%=notice.getContents() %></h6>
                 </div>
                 <div class="row" align="right">
 			      <input type="button" class="btn btn-md btn--warning" value="목록보기" >
@@ -50,8 +51,5 @@ $(function(){
 		});
 	</script>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> e67746f7da3158b3653e25e65dea06fccdcd9523
+

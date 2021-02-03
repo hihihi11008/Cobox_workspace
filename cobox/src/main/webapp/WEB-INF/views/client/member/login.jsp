@@ -155,6 +155,7 @@ input[type=submit]:hover {
 			action : "/client/member/login",
 			method : "post"
 		});
+		
 		$("#formtable").submit();
 	}
  
@@ -192,11 +193,11 @@ input[type=submit]:hover {
 					</div>
 
 					<div class="col">
-						<a href="#" class="kakao btn"> <i class="fa fa-kakao fa-fw"></i>Login
+						<a href="https://www.kakaocorp.com/service/KakaoTalk" class="kakao btn"> <i class="fa fa-kakao fa-fw"></i>Login
 							with Kakao
-						</a> <a href="#" class="naver btn"> <i class="fa fa-naver fa-fw"></i>
+						</a> <a href="https://www.naver.com/" class="naver btn"> <i class="fa fa-naver fa-fw"></i>
 							Login with Naver
-						</a> <a href="#" class="fb btn"> <i class="fa fa-facebook fa-fw"></i>
+						</a> <a href="https://ko-kr.facebook.com/" class="fb btn"> <i class="fa fa-facebook fa-fw"></i>
 							Login with Facebook
 						</a>
 

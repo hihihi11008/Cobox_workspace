@@ -1,4 +1,6 @@
 package com.koreait.cobox.exception;
+
+//CRUD 작업시 발생되는 예외
 public class DeleteFailException extends RuntimeException{
 
 	

@@ -13,4 +13,5 @@ public class Member {
 	private String email_server;
 	private String phone;
 	private String point;
+	
 }

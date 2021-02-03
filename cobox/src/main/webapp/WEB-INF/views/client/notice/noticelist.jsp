@@ -89,7 +89,9 @@ function getDivisionList(){
 					<%Notice notice = noticeList.get(curPos++); %>
 					<article class="post post--news">
 						<h4><%=num-- %></h4>
-						<h1><a href="/client/notice/noticedetail?notice_id=<%=notice.getNotice_id() %>" class="post__title-link"><%=notice.getTitle() %></a></h1> 
+						<h1><a href="/client/notice/noticedetail?notice_id=<%=notice.getNotice_id() %>" class="post__title-link"><%=notice.getTitle() %></a></h1>
+						 
+						<h4><%=notice.getDivision().getDname()%></h4>
 						<p class="post__date"><%=notice.getRegdate().substring(0, 10)%> </p>
 						<div class="wave-devider"></div>
 						<p class="post__text"><%=notice.getContents() %></p> 

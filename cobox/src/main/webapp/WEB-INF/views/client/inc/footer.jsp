@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-	<div class="clearfix"></div>
+   <div class="clearfix"></div>
         <footer class="footer-wrapper">
             <section class="container">
                 <div class="col-xs-4 col-md-2 footer-nav">

@@ -70,11 +70,11 @@ public class NoticeController {
 	 public ModelAndView getCinemaNoticeByDivision(HttpServletRequest request, int division_id) { 
 		 logger.debug("division_id 는????" + division_id);
 		 List<Notice> noticeList = noticeService.selectAllById(division_id); 
+		 //logger.debug("방금누른 구분값의 이름은???"+noticeList.get(1).getDivision().getDname());
 		 
 		 ModelAndView mav = new ModelAndView(); 
 		 pager.init(request, noticeList);
 		 mav.addObject("pager",pager);
-		 //logger.debug("dname은??????" + noticeList.get(1).getDivision().getDname());
 		 mav.setViewName("client/notice/noticelist");
 		 return mav; 
 	 }
@@ -99,7 +99,7 @@ public class NoticeController {
 	
 	//1:1 메일 보내기 
 	@RequestMapping(value = "/contact/sendmail", method = RequestMethod.POST)
-	public ModelAndView sendMail(HttpServletRequest request, String uname, String uemail, String umessage) {
+	public ModelAndView sendMail(HttpServletRequest request,String uname, String uemail, String umessage) {
 		/*
 		String name = request.getParameter("uname");
 		String email = request.getParameter("uemail");
@@ -109,7 +109,7 @@ public class NoticeController {
 		logger.debug("받아온 메일은 ? " + uemail);
 		logger.debug("받아온 내용은 ? " + umessage);
 		
-		mailSender.send(uemail, uname, umessage);
+		mailSender.send(uemail,uname, umessage);
 		
 		MessageData messageData = new MessageData();
 		messageData.setResultCode(1);

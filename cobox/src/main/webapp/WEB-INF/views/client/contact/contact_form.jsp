@@ -57,6 +57,8 @@ $(function(){
 	                        <div class="col-sm-6">
 	                            <input type='email' placeholder='Your email' name="uemail" class="form__mail">
 	                        </div>
+	                            <input type="hidden" name="adminEmail" value="jsarlawldjs@naver.com">
+	                       
 	                        <div class="col-sm-12">
 	                            <textarea placeholder="Your message" name="umessage" class="form__message"></textarea>
 	                        </div>

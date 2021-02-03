@@ -42,5 +42,3 @@
 
 <!-- Modernizr --> 
 <script src="/resources/js/external/modernizr.custom.js"></script>
-
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->

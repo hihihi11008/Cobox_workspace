@@ -1,9 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@page import="com.koreait.cobox.model.domain.Member"%>
+
+<%
+Member member = (Member) session.getAttribute("member");
+%>
 <!doctype html>
 <html>
 <head>
 <%@ include file="../inc/header.jsp"%>
-<%@include file="../inc/script.jsp"%>
+<%@ include file="../inc/script.jsp"%>
 
 <style>
 body {
@@ -45,7 +50,6 @@ input:hover, .btn:hover {
 
 /* add appropriate colors to fb, twitter and google buttons */
 
-
 /* style the submit button */
 input[type=submit] {
 	background-color: #4CAF50;
@@ -57,13 +61,13 @@ input[type=submit]:hover {
 	background-color: #45a049;
 }
 
-#login_btn {
+#memberdelete {
 	color: black;
 	background-color: rgb(222, 222, 222);
 	width: 49.5%
 }
 
-#join_btn {
+#cancel {
 	color: black;
 	background-color: rgb(222, 222, 222);
 	width: 49.5%
@@ -72,10 +76,11 @@ input[type=submit]:hover {
 /* Two-column layout */
 .col {
 	float: left;
-	width: 50%;
+	width: 80%;
 	margin: auto;
 	padding: 0 50px;
 	margin-top: 6px;
+	margin-left: 10%;
 }
 
 /* Clear floats after the columns */
@@ -116,72 +121,30 @@ input[type=submit]:hover {
 	background-color: #666;
 	border-radius: 0px 0px 4px 4px;
 }
-
-/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 650px) {
-	.col {
-		width: 100%;
-		margin-top: 0;
-	}
-	/* hide the vertical line */
-	.vl {
-		display: none;
-	}
-	/* show the hidden text on small screens */
-	.hide-md-lg {
-		display: block;
-		text-align: center;
-	}
-}
 </style>
 <script>
-/*
- 
-$(function() {
-	$("#login_btn").on("click", function() {
-		requestLogin();
-	});
-});
-  
-	
-	function requestLogin() {
-		$("formtable").attr({
-			method : "post",
-			action : "/client/member/login"
-		});
-		$("formtable").submit();
-	}
- */
-
 	$(function() {
-		$("#login_btn").on("click", function(){
-			
-			alert("확인용");
-			//실행 잘 됨
-			
-			//문제부분
-			$.ajax({
-				url:"/client/member/login",
-				type:"post", 
-				data:{
-					"mid":$("input[name='mid']").val() , 
-					"password":$("input[name='password']").val()
-				},
-				success:function(result){
-					
-					if(result==undefined){//성공
-						alert(result.name+"님 안녕하세요 ");
-						location.href="/";
-					}else{//실패
-						alert(result.msg);				
-					}
-				}
-			});		
+		$("#memberdelete").on("click", function() {
+			requestquit();
 		});
 	});
-	
+
+	function requestquit() {
+		$.ajax({
+			url : "/client/mypage",
+			type : "post",
+			data : {
+				mid : $("input[name='mid']").val(),
+				password : $("input[name='password']").val()
+			}
+		})
+		$("#removetable").submit();
+		alert("회원탈퇴가 완료되었습니다");
+		location.href="/"
+	};
 </script>
 </head>
+
 <body class="single-cin">
 	<div class="wrapper">
 		<%@ include file="../inc/top.jsp"%>
@@ -190,16 +153,21 @@ $(function() {
 
 
 		<div id="form_container">
-			<form id="formtable" method="post">
+			<form id="removetable">
 				<div class="row">
-					<div style="text-align: center; padding: 15px; font-size: 50px">로그인</div>
-					<div class="vl">
-						<span class="vl-innertext">or</span>
-					</div>
+					<div class="col">
+						<div style="text-align: center; padding: 15px; font-size: 50px">회원탈퇴</div>
+						<div style="text-align: center; padding: 15px; font-size: 25px">
+							회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요.</div>
 
-						<div> 회원탈퇴를 원하시면 아이디와 비밀번호를 입력해주세요. </div>						 
-						<input id="back" type="button" value="회원 탈퇴">
-						<input id="login_btn" type="button" value="취소"> 
+						<input type="text" name="mid" value="<%=member.getMid()%>" readonly="readonly" /> 
+						<input type="password" name="password" placeholder="비밀번호를 입력해주세요" required /> 
+						<input id="memberdelete" type="button" value="회원 탈퇴" /> 
+						
+						<a href="/client/mypage"> 
+							<input id="cancel" type="button" value="취소" onclick="requestquit()"/>
+						</a>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -210,11 +178,6 @@ $(function() {
 		<%@include file="../inc/footer.jsp"%>
 	</div>
 	<!-- Custom -->
-	<script src="/resources/js/custom.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			init_Home();
-		});
-	</script>
+
 </body>
 </html>
