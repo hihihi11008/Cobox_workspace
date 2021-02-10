@@ -74,8 +74,8 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	@Override
-	public int idChk(Member member) throws MemberNotFoundException {
-		int result = memberDAO.idChk(member);
+	public int idChk(String mid) throws MemberNotFoundException {
+		int result = memberDAO.idChk(mid);
 		return result;
 	}
 

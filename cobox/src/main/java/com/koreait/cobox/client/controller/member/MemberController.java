@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,7 +28,7 @@ public class MemberController {
 	private MemberService memberService;
 		
 	//회원가입폼 요청 
-	@RequestMapping(value="/member/join", method=RequestMethod.GET)
+	@RequestMapping(value="/member/registForm", method=RequestMethod.GET)
 	public ModelAndView getRegistForm(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("client/member/join");
 		return mav;	
@@ -45,7 +47,11 @@ public class MemberController {
 		logger.debug("이메일server "+member.getEmail_server());
 		logger.debug("핸드폰번호 "+member.getPhone());
 		
-		memberService.insert(member);
+		int result = memberService.idChk(member.getMid());
+		
+		if (result==0) {
+			memberService.insert(member);
+		}
 
 		StringBuffer sb = new StringBuffer();
 		sb.append("{");
@@ -56,8 +62,26 @@ public class MemberController {
 		return sb.toString();
 	} 
 	
-	//로그인 홈 요청 
-	@RequestMapping(value="/member/formtable", method=RequestMethod.GET)
+	//회원가입-아이디중복체크
+	@ResponseBody
+	@RequestMapping(value = "/member/idChk", method = RequestMethod.POST)
+	public int idChk(@RequestBody String mid) {
+		logger.debug("넘어온 mid는? "+mid);
+		int result = memberService.idChk(mid);
+		return result;
+	}
+	
+	//회원가입-패스워드체크 
+	@ResponseBody
+	@RequestMapping(value = "/member/passChk", method = RequestMethod.POST)
+	public int passChk(Member member) {
+		logger.debug(member.getMid());
+		int result = memberService.passChk(member);
+		return result;
+	}
+	
+	//로그인 폼 요청 
+	@RequestMapping(value="/member/loginForm", method=RequestMethod.GET)
 	public ModelAndView getLoginForm() {
 		ModelAndView mav = new ModelAndView("client/member/login");
 		

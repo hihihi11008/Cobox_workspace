@@ -30,6 +30,8 @@
 <link href="/resources/css/external/jquery.selectbox.css" rel="stylesheet" />
 <!-- Touch -->
  <link href="/resources/css/touch.css?v=1" rel="stylesheet" />
+ <!-- Join -->
+ <link href="/resources/css/join.css" rel="stylesheet"/>
 
 <!-- Slider Revolution CSS Files -->
 <link rel="stylesheet" type="text/css" href="/resources/revolution/css/settings.css">
@@ -39,6 +41,8 @@
 <!-- Custom -->
 <link href = "/resources/css/style.css? v = 1"rel = "stylesheet"/>
 
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Modernizr --> 
 <script src="/resources/js/external/modernizr.custom.js"></script>

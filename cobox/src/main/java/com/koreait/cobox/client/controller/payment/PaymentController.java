@@ -24,22 +24,6 @@ public class PaymentController {
 	
 	@Autowired
 	private PaymentService paymentService;
-
-	/*
-	@RequestMapping(value="/client/movie/reservationfinal", method=RequestMethod.POST)
-	@ResponseBody
-	public MessageData registReservation(Reservation reservation,HttpSession session) {
-		Member member=(Member)session.getAttribute("member");
-		reservation.setMember_id(member.getMember_id());
-		paymentService.insert(reservation);
-		
-		MessageData messageData=new MessageData();
-		messageData.setResultCode(1);
-		messageData.setMsg("예약이 완료 되었습니다.");
-		messageData.setUrl("client/movie/reservationfinal");
-		return messageData;
-	}
-	*/
 	
 	/********************************************************
 		결제업무
@@ -74,12 +58,12 @@ public class PaymentController {
 	
 	paymentService.registReservation(payment,reservation,schedule);
 	
-	
 	//결제 완료됐다는  메시지를 보고싶다면 message.jsp로 응답 
 	MessageData messageData = new MessageData();
 	messageData.setResultCode(1);
 	messageData.setMsg("예매가 완료되었습니다. " );
 	messageData.setUrl("/movie/reservationfinal");
+	
 	
 	ModelAndView mav = new ModelAndView();
 	mav.addObject("messageData", messageData);

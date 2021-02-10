@@ -11,7 +11,7 @@ public interface MemberDAO {
 	public void update(Member member); //회원정보 수정
 	public void delete(Member member); //회원탈퇴
 	
-	public int idChk(Member member);//아이디 중복체크
+	public int idChk(String mid);//아이디 중복체크
 	public int passChk(Member member);//패스워드 중복체크
 	
 }

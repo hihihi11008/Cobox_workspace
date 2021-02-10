@@ -3,85 +3,11 @@
 <html>
 <head>
 <%@ include file="../inc/header.jsp"%>
-<style>
-h, td, tr, textarea, FORM {
-	font-family: 고딕;
-	font-size: 1em;
-	border-radius: 5px;
-}
-
-table {
-	border: 1px solid rgba(255, 255, 255, 0.8);
-	border-spacing: 15px;
-}
-
-
-FORM .input {
-	border-radius: 10px;
-	border: solid 5px #A9AD1C;
-	background-color: rgba(255, 255, 255, 0.8);
-	border-spacing: 15px;
-}
-
-input {
-	width: 60%;
-	padding: 5px;
-	border-radius: 5px;
-	margin: 5px 0;
-	opacity: 0.85;
-	display: inline-block;
-	font-size: 17px;
-	line-height: 10px;
-	text-decoration: none;
-	background-color: rgb(222, 222, 222);
-	color: black;
-}
-
-#form_container {
-
-	width: 80%;
-	height: 100%;
-	position: relative;
-	border: solid 5px #A9AD1C;
-	border-radius: 10px;
-	background-color: rgba(255, 255, 255, 0.8);
-	padding: 20px 0 30px 0;
-	margin: 0 auto;
-}
-
-#join_btn {
-	width: 49.5%;
-	padding: 10px;
-	position: relative;
-	float: left;
-	color: black;
-	background-color: rgb(222, 222, 222);
-}
-
-#reset_btn {
-	width: 49.5%;
-	padding: 10px;
-	position: relative;
-	float: left;
-	color: black;
-	background-color: rgb(222, 222, 222);
-}
-
-select, #doublecheck {
-	background-color: #ffffff;
-	color: black;
-	padding: 5px;
-	border-radius: 5px;
-	font-size: 17px;
-	line-height: 10px;
-}
-</style>
 <script>
 //회원가입 버튼을 누르면
-
 	$(function(){
 		//회원가입 처리 
-		$("input[type='button']").click(function(){
+		$(".signupbtn").click(function(){
 			regist();
 		});	
 	});
@@ -89,7 +15,7 @@ select, #doublecheck {
 	//요청이 완료되는 시점에 프로그래스바를 감춘다!!
 	function regist(){
 		//form 태그의 파라미터들을 전송할수있는 상태로 둬야  data키값에 form 자체를 넣을 수 있다.
-		var formData = $("#formtable").serialize(); //전부 문자열화 시킨다!!
+		var formData = $("#member-form").serialize(); //전부 문자열화 시킨다!!
 		
 		$.ajax({
 			url:"/client/member/regist",
@@ -100,100 +26,140 @@ select, #doublecheck {
 				var json = JSON.parse(responseData);
 				if(json.result==1){
 					alert("회원가입이 완료되었습니다.");
-					location.href="/client/member/formtable"; //로그인 페이지
+					location.href="/client/member/loginForm"; //로그인 페이지
 				}else{
 					alert("회원가입에 실패했습니다. \n 다시 시도해주세요.");
 				}
 			}
 		});
 	}
+	
+	//아이디랑 비번이 맞지 않는 경우 가입버튼 비활성화를 위한 변수 설정 
+	var idChk=0;
+	var passChk=0;
+	//아이디 체크하여 가입버튼 비활성화, 중복확인 
+	function idCheck(){
+		var inputId = $("#mid").val();
+		//alert(inputId);
+		var hoho = "gabi";
+		$.ajax({
+			url : "/client/member/idChk",
+			type : "post", 
+			data: inputId,
+			dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+			success:function(result){
+				if (inputId=="" && result=='0') {
+					$(".signupbtn").prop("disabled", true);
+					$(".signupbtn").css("background-color", "#aaaaaa"); //회
+					$("#mid").css("background-color", "#FFCECE"); //빨 
+					idChk=0;
+				} else if(result=='0'){
+					$("#mid").css("background-color", "#B0F6AC"); //초
+					idChk=1;
+					if (idChk==1 && passChk==1) {
+						$(".signupbtn").prop("disabled", false);
+						$(".signupbtn").css("background-color", "#4CAF50");
+					}
+				} else if(result=="1"){
+					$(".signupbtn").prop("disabled", true);
+                    $(".signupbtn").css("background-color", "#aaaaaa");
+                    $("#mid").css("background-color", "#FFCECE");
+                    idChk = 0;
+				}
+			}
+		});
+	}
+	
+	//재입력 비밀번호 체크해서 가입버튼 비활성화 또는 맞지않음을 알려줌
+	function passCheck(){
+		var pass = $("#password").val();
+        var repass = $("#psw-repeat").val();
+        if(repass=="" && (pass != repass || pass == repass)){
+            $(".signupbtn").prop("disabled", true);
+            $(".signupbtn").css("background-color", "#aaaaaa");
+            $("#psw-repeat").css("background-color", "#FFCECE");
+        } else if (pass == repass) {
+            $("#psw-repeat").css("background-color", "#B0F6AC");
+            passChk = 1;
+            if(idChk==1 && passChk == 1) {
+                $(".signupbtn").prop("disabled", false);
+                $(".signupbtn").css("background-color", "#4CAF50");
+                signupCheck();
+            }
+        } else if (pass != repass) {
+        	passChk = 0;
+            $(".signupbtn").prop("disabled", true);
+            $(".signupbtn").css("background-color", "#aaaaaa");
+            $("#psw-repeat").css("background-color", "#FFCECE");
+            
+        }
+	}
+	
+	 //닉네임과 이메일 입력하지 않았을 경우 가입버튼 비활성화
+    function signupCheck() {
+        var phone = $("#phone").val();
+        var name = $("#name").val();
+        if(name=="" || phone=="") {
+            $(".signupbtn").prop("disabled", true);
+            $(".signupbtn").css("background-color", "#aaaaaa");
+        }
+    }
+
 </script>
 </head>
 <body class="single-cin">
 	<div class="wrapper">
 		<%@ include file="../inc/top.jsp"%>
-		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  여기에 필요한 코드 짜기  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-		<div>
-			<table id="form_container">
-			<!--  
-			<div id="loader" style="margin:auto; color:red;">잠시만 기다려주세요</div>
-			-->
-				<form id="formtable" method="post">
-					<h1 style="text-align: center; font-style: bold">회원가입</h1>
-					<tr>
-						<td text-align="center">아이디</td>
-						<td>
-							<input id="mid" type="text" name="mid" placeholder="아이디를 입력하세요"></input>
-							<!-- 
-							 <input id="doublecheck" type="button" onClick="idcheck" value="중복확인"></input>
-							 -->
-						</td>
-					</tr>
-
-					<tr>
-						<td>비밀번호</td>
-						<td><input id="pw" type="password" name="password"
-							placeholder="비밀번호를 입력하세요"></input></td>
-					</tr>
-
-					<tr>
-						<td>비밀번호 확인</td>
-						<td><input id="pwcheck" type="password"
-							placeholder="비밀번호를 입력하세요"></input></td>
-					</tr>
-
-					<tr>
-						<td>성명</td>
-						<td><input id="name" type="text" name="name" placeholder="이름을 입력하세요"></input></td>
-					</tr>
-
-					<tr>
-						<td>생년월일</td>
-						<td><input id="birth" type="date" name="birth" value="2021-01-01"></input></td>
-					</tr>
-
-					<tr>
-						<td>이메일</td>
-						<td>
-						<input id="email_id" type="text" name="email_id" placeholder="이메일을 입력하세요"></input> @ 
-							<select name="email_server">
-									<option>naver.com</option>
-									<option>gmail.com</option>
-									<option>nate.com</option>
-							</select>
-						</td>
-					</tr>
-
-					<tr>
-						<td>핸드폰 번호</td>
-						<td><input id="phone" type="text" name="phone" placeholder="ex)01012345678"></input></td>
-					</tr>
-
-					<tr>
-						<td style="align: center;">
-							<input id="join_btn" type="button" value="가입하기" onClick="regist()"></input> 
-							<input id="reset_btn" type="reset" value="다시 입력"></input
-						></td>
-					</tr>
-
-
-				</FORM>
-			</table>
-		</div>
-
-
-
-		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  여기에 필요한 코드 짜기  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- ------------------------------------------------------------------------------------------- -->
+		<form id="member-form" style="border:1px solid #ccc">
+			<div class="container">
+				<h1>회원가입</h1>
+				<hr>
+				
+				<label><b>ID</b></label>
+				<input type="text" placeholder="Enter ID" id="mid" name="mid" oninput="idCheck()">
+				
+				<label><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" id="password" name="password" oninput="passCheck()">
+				
+				<label><b>Repeat Password</b></label>
+				<input type="password" placeholder="Repeat Password" id="psw-repeat" name="psw-repeat" oninput="passCheck()">
+				
+				<label><b>Name</b></label>
+				<input type="text" placeholder="Enter Name" id="name" name="name">
+				  
+				<label><b>Phone</b></label>
+				<input type="text" placeholder="Enter Phone" id="phone" name="phone">
+				  
+				<label id="email"><b>Email</b></label>
+				<input id="email_id" type="text" placeholder="Enter Email" name="email_id">@
+				<select id="email_server" name="email_server">
+					<option>naver.com</option>
+					<option>gmail.com</option>
+					<option>nate.com</option>
+				</select>
+				
+				<label id="birth2"><b>Birth</b></label>
+				<input type="date" id="birth" name="birth" value="2021-01-01">
+				
+				<div class="clearfix">
+					<button type="reset" class="cancelbtn">Reset</button>
+					<button type="button" class="signupbtn" disabled="disabled">Sign Up</button>
+				</div>
+			</div>
+		</form>
+		<!-- ------------------------------------------------------------------------------------------- -->
 		<%@include file="../inc/footer.jsp"%>
 	</div>
 	<%@include file="../inc/script.jsp"%>
-	<!-- Custom -->
-	<script src="/resources/js/custom.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			init_Home();
-		});
-	</script>
+<!-- 	
+<script src="/resources/js/custom.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		init_Home();
+	});
+</script> 
+-->
 </body>
 </html>

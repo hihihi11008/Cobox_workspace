@@ -20,8 +20,6 @@
 		<typeAlias type="com.koreait.cobox.model.domain.TopCategory"	alias="TopCategory"/>
 		<typeAlias type="com.koreait.cobox.model.domain.Snack"			alias="Snack"/>
 		<typeAlias type="com.koreait.cobox.model.domain.Cart"				alias="Cart"/>
-				
-				
 	</typeAliases>
 	
 	<mappers>
@@ -41,7 +39,6 @@
 		<mapper resource="com/koreait/cobox/mybatis/mapper/TopCategoryMapper.xml"/>
     	<mapper resource="com/koreait/cobox/mybatis/mapper/SnackMapper.xml"/>
 	    <mapper resource="com/koreait/cobox/mybatis/mapper/CartMapper.xml"/>
-		
 	</mappers>
 	
 </configuration>

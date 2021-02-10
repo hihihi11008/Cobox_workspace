@@ -12,6 +12,6 @@ public interface MemberService {
 	public void update(Member member); //회원정보수정
 	public void delete(Member member); //회원정보삭제
 	
-	public int idChk(Member member);//회원 아이디체크
+	public int idChk(String mid);//회원 아이디체크
 	public int passChk(Member member);//회원 비밀번호체크
 }

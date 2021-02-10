@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import ="com.koreait.cobox.model.domain.Member" %>
 <!-- Banner -->
-
-
 <script>
 	function requestLogout() {
 		$("#logout").attr({
@@ -51,7 +49,7 @@
 			<%
 			if (session.getAttribute("member") == null) {
 			%>
-			<a href="/client/member/formtable" id="login"
+			<a href="/client/member/loginForm" id="login"
 				style="color: #ffffff; width: 17px; height: 20px; background-color: #F2A14B; border-radius: 3px; font: 12px 'aleobold', sans-serif; text-transform: uppercase; transition: 0.5s; padding: 7px 20px; margin-top: 30px;">Login</a>
 			<%
 			} else {

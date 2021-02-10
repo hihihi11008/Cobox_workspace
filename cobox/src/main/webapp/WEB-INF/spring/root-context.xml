@@ -21,13 +21,15 @@
 		resource-ref="true"/>
 		
 	<!-- 트랜잭션매니저 등록 -->
-	<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
+	<bean id="dataSourceTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource"/>
 	
 	<!-- SqlSessionFactoryBean등록-->
 	<bean id="sqlSessionFactoryBean"
-		class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource" p:configLocation="classpath:com/koreait/cobox/mybatis/config/config.xml"/>
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:configLocation="classpath:com/koreait/cobox/mybatis/config/config.xml"/>
 		
 	<!-- SqlSessionTemplate 등록 -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
@@ -45,10 +47,10 @@
    </tx:advice>
    
    <!-- 트랜잭션 적용대상 서비스등록 : 결제정보등록-->
-   <aop:config>
-   	<aop:pointcut expression="execution(public * com.koreait.cobox.model.payment.service..*(..))" id="txPointcut"/>
-   	<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
-   </aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.koreait.cobox.model.payment.service..*(..))" id="txPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+	</aop:config>
    
    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -77,6 +79,7 @@
 		<property name="supportedMediaTypes">
 			<list>
 				<value>application/json;charset=utf-8</value>
+				<value>text/html;charset=utf-8</value>
 			</list>
 		</property>	
 	</bean>

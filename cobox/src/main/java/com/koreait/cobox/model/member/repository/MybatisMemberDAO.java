@@ -60,15 +60,15 @@ public class MybatisMemberDAO implements MemberDAO {
 
 	//아이디 중복체크
 	@Override
-	public int idChk(Member member) throws MemberNotFoundException {
-		int result = sqlSessionTemplate.selectOne("memberMapper.idChk", member);
+	public int idChk(String mid) throws MemberNotFoundException {
+		int result = sqlSessionTemplate.selectOne("Member.idChk", mid);
 		return result;
 	}
 
 	@Override
 	public int passChk(Member member) {
-		int result = sqlSessionTemplate.selectOne("memberMapper.passChk", member);
-		return 0;
+		int result = sqlSessionTemplate.selectOne("Member.passChk", member);
+		return result;
 	}
 
 
